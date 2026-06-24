@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dfligyjmtlex4"]
+
+[ext_resource type="Script" uid="uid://bvymft0v01wje" path="res://gameplay/circl/spawner/circl_spawner.gd" id="1_nmu0g"]
+[ext_resource type="Texture2D" uid="uid://01o823argq1r" path="res://assets/art/icon.svg" id="2_l4fut"]
+
+[node name="CirclSpawner" type="Node2D" unique_id=2031497970]
+script = ExtResource("1_nmu0g")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=104288947]
+scale = Vector2(0.375, 0.125)
+texture = ExtResource("2_l4fut")

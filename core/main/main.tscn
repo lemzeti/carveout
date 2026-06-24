@@ -1,0 +1,222 @@
+[gd_scene format=3 uid="uid://ddssmh7ukl0v6"]
+
+[ext_resource type="PackedScene" uid="uid://dfligyjmtlex4" path="res://gameplay/circl/spawner/circl_spawner.tscn" id="1_8fcwd"]
+[ext_resource type="Script" uid="uid://6qsr261l24lh" path="res://core/main/main.gd" id="1_yibi5"]
+[ext_resource type="Texture2D" uid="uid://01o823argq1r" path="res://assets/art/icon.svg" id="2_6vymn"]
+[ext_resource type="Script" uid="uid://2bf1f4eo57mo" path="res://gameplay/circl/editors/manual_edit.gd" id="3_vwfi5"]
+
+[node name="Main" type="Node" unique_id=1524745738]
+process_mode = 3
+script = ExtResource("1_yibi5")
+metadata/_edit_horizontal_guides_ = [1045.0]
+
+[node name="World" type="Node2D" parent="." unique_id=1137839297]
+process_mode = 1
+
+[node name="BoundaryRoot" type="Node2D" parent="World" unique_id=1814242193]
+
+[node name="RectanglRoot" type="Node2D" parent="World" unique_id=544639570]
+
+[node name="CirclRoot" type="Node2D" parent="World" unique_id=624857552]
+
+[node name="CirclSpawner" parent="World/CirclRoot" unique_id=2031497970 node_paths=PackedStringArray("health_editor") instance=ExtResource("1_8fcwd")]
+position = Vector2(1016, 588)
+health_editor = NodePath("../../../HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor")
+
+[node name="EffectsRoot" type="Node2D" parent="World" unique_id=742337684]
+
+[node name="HudLayer" type="CanvasLayer" parent="." unique_id=1482540470]
+process_mode = 1
+layer = 10
+
+[node name="HudRoot" type="Control" parent="HudLayer" unique_id=615786913]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panels" type="VBoxContainer" parent="HudLayer/HudRoot" unique_id=2115117033]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 320.0
+grow_vertical = 2
+
+[node name="PatternPreview" type="Panel" parent="HudLayer/HudRoot/Panels" unique_id=791189235]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Pattern" type="TextureRect" parent="HudLayer/HudRoot/Panels/PatternPreview" unique_id=199840996]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6vymn")
+
+[node name="Settings" type="Panel" parent="HudLayer/HudRoot/Panels" unique_id=50116792]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CirclHealthEdit" type="Control" parent="HudLayer/HudRoot/Panels/Settings" unique_id=1455992344]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DecrementHealth" type="Button" parent="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit" unique_id=1423709317]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.0
+offset_top = 72.0
+offset_right = -44.0
+offset_bottom = 103.0
+grow_horizontal = 2
+focus_mode = 0
+text = "-"
+
+[node name="HealthEditor" type="LineEdit" parent="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit" unique_id=421478252]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -109.0
+offset_right = 40.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "3"
+alignment = 1
+script = ExtResource("3_vwfi5")
+
+[node name="IncrementHealth" type="Button" parent="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit" unique_id=1672833826]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 44.0
+offset_top = 72.0
+offset_right = 68.0
+offset_bottom = 103.0
+grow_horizontal = 2
+focus_mode = 0
+text = "+"
+
+[node name="Label" type="Label" parent="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit" unique_id=1550268855]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.0
+offset_top = 40.0
+offset_right = 43.0
+offset_bottom = 63.0
+grow_horizontal = 2
+text = "circl health"
+
+[node name="Timer" type="Label" parent="HudLayer/HudRoot/Panels/Settings" unique_id=2117502470]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "00:00"
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1247443078]
+unique_name_in_owner = true
+process_mode = 2
+layer = 20
+
+[node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=1485440595]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="PauseLayer/PauseRoot" unique_id=698847782]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="BigPauseLabel" type="Label" parent="PauseLayer/PauseRoot" unique_id=1040210835]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -58.5
+offset_right = 185.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "you are paused"
+horizontal_alignment = 1
+
+[node name="SmallPauseLabel" type="Label" parent="PauseLayer/PauseRoot" unique_id=1937435415]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = 13.5
+offset_right = 185.0
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "press 'p' or 'esc' to unpause"
+horizontal_alignment = 1
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=260603085]
+process_mode = 3
+layer = 100
+visible = false
+
+[node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=109728142]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/DecrementHealth" to="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor" method="_on_decrement_health_pressed"]
+[connection signal="text_changed" from="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor" to="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor" method="_on_text_changed"]
+[connection signal="pressed" from="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/IncrementHealth" to="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor" method="_on_increment_health_pressed"]
