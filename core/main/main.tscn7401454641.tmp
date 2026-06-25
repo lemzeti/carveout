@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://6qsr261l24lh" path="res://core/main/main.gd" id="1_yibi5"]
 [ext_resource type="Texture2D" uid="uid://01o823argq1r" path="res://assets/art/icon.svg" id="2_6vymn"]
 [ext_resource type="Script" uid="uid://2bf1f4eo57mo" path="res://gameplay/circl/editors/manual_edit.gd" id="3_vwfi5"]
-[ext_resource type="Texture2D" uid="uid://bbg3o8loen27k" path="res://assets/art/stickers/win-sticker.png.png" id="5_k5wvu"]
+[ext_resource type="Script" uid="uid://bebbk2rjhg1uf" path="res://gameplay/ui/sticker_layer.gd" id="5_k5wvu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5wvu"]
 size = Vector2(64, 720)
@@ -22,11 +22,6 @@ size = Vector2(896, 64)
 process_mode = 3
 script = ExtResource("1_yibi5")
 metadata/_edit_horizontal_guides_ = [1045.0]
-
-[node name="Systems" type="Node" parent="." unique_id=1105372152]
-
-[node name="TransitionTweenTimerHelper" type="Timer" parent="Systems" unique_id=34524477]
-unique_name_in_owner = true
 
 [node name="World" type="Node2D" parent="." unique_id=1137839297]
 process_mode = 1
@@ -67,7 +62,6 @@ position = Vector2(800, 320)
 [node name="CirclRoot" type="Node2D" parent="World" unique_id=624857552]
 
 [node name="CirclSpawner" parent="World/CirclRoot" unique_id=2031497970 node_paths=PackedStringArray("health_editor") instance=ExtResource("1_8fcwd")]
-unique_name_in_owner = true
 position = Vector2(800, 576)
 health_editor = NodePath("../../../HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor")
 
@@ -251,8 +245,11 @@ theme_override_font_sizes/font_size = 25
 text = "press 'p' or 'esc' to unpause"
 horizontal_alignment = 1
 
-[node name="StickerLayer" type="CanvasLayer" parent="." unique_id=2045700172]
-layer = 99
+[node name="StickerLayer" type="CanvasLayer" parent="." unique_id=2045700172 node_paths=PackedStringArray("main_scene")]
+layer = 120
+script = ExtResource("5_k5wvu")
+main_scene = NodePath("..")
+animation_duration = null
 
 [node name="StickerRoot" type="Control" parent="StickerLayer" unique_id=54897456]
 layout_mode = 3
@@ -277,8 +274,7 @@ offset_right = 8.0
 offset_bottom = 8.319977
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(128, 128)
-texture = ExtResource("5_k5wvu")
+pivot_offset = Vector2(396, 156)
 
 [node name="VictoryLayer" type="CanvasLayer" parent="." unique_id=532330962]
 unique_name_in_owner = true
@@ -326,7 +322,6 @@ vertical_alignment = 1
 unique_name_in_owner = true
 process_mode = 3
 layer = 100
-visible = false
 
 [node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=109728142]
 layout_mode = 3

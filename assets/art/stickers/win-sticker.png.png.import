@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6qnn3ni5sq2x"
-path="res://.godot/imported/spong.png-2b0b37327c856af516d8946e827c3c48.ctex"
+uid="uid://bbg3o8loen27k"
+path="res://.godot/imported/win-sticker.png.png-161c0ec2d1a84a9ab71491ed5a3210f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/lose/spong.png"
-dest_files=["res://.godot/imported/spong.png-2b0b37327c856af516d8946e827c3c48.ctex"]
+source_file="res://assets/art/stickers/win-sticker.png.png"
+dest_files=["res://.godot/imported/win-sticker.png.png-161c0ec2d1a84a9ab71491ed5a3210f1.ctex"]
 
 [params]
 

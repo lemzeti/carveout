@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btwtso78t8spb"
-path="res://.godot/imported/yippee.png-40c0773995ca3cd35515458438e2fe07.ctex"
+uid="uid://kll08jyphtf8"
+path="res://.godot/imported/pattern-7.png-bb482e2629113b417946f68a70277c61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/win/yippee.png"
-dest_files=["res://.godot/imported/yippee.png-40c0773995ca3cd35515458438e2fe07.ctex"]
+source_file="res://assets/art/pattern_previews/pattern-7.png"
+dest_files=["res://.godot/imported/pattern-7.png-bb482e2629113b417946f68a70277c61.ctex"]
 
 [params]
 

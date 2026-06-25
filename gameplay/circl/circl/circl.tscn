@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cs2o7jr0pm6p6"]
 
 [ext_resource type="Script" uid="uid://bfumt2ciwvl1e" path="res://gameplay/circl/circl/circl.gd" id="1_kebjp"]
-[ext_resource type="Texture2D" uid="uid://c733vvaycftuu" path="res://assets/art/128-circle.png" id="2_othnu"]
+[ext_resource type="Texture2D" uid="uid://c733vvaycftuu" path="res://assets/art/shapes/128-circle.png" id="2_othnu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hi1gw"]
 radius = 12.0

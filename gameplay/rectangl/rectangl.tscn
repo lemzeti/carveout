@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf2mg8smasjso"]
 
-[ext_resource type="Texture2D" uid="uid://01o823argq1r" path="res://assets/art/icon.svg" id="1_64d0l"]
 [ext_resource type="Script" uid="uid://b1sq07y1bedbv" path="res://gameplay/rectangl/rectangl.gd" id="1_682vc"]
+[ext_resource type="Texture2D" uid="uid://bcynucme3qyoj" path="res://assets/art/shapes/10-square.png" id="2_64d0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64d0l"]
 size = Vector2(64, 32)
@@ -13,9 +13,9 @@ script = ExtResource("1_682vc")
 shape = SubResource("RectangleShape2D_64d0l")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1953045547]
-self_modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.5, 0.25)
-texture = ExtResource("1_64d0l")
+unique_name_in_owner = true
+scale = Vector2(6.4, 4.799999)
+texture = ExtResource("2_64d0l")
 
 [node name="Label" type="Label" parent="." unique_id=1970374598]
 unique_name_in_owner = true
@@ -23,6 +23,7 @@ offset_left = -32.0
 offset_top = -16.0
 offset_right = 32.0
 offset_bottom = 16.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1

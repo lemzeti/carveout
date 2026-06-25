@@ -75,3 +75,11 @@ func _on_health_edited(text : String) -> void:
 
 	circl_health = value
 	#print("latest health: %d" % circl_health)
+
+
+func disable() -> void:
+	set_process_input(false)
+
+
+func enable() -> void:
+	set_process_input(true)

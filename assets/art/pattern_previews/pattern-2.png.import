@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccl41py054pxf"
-path="res://.godot/imported/happy.png-e61616a4fde4a2406e85e6f77f3d2653.ctex"
+uid="uid://38te1o115b6f"
+path="res://.godot/imported/pattern-2.png-526b2ad7866d4b7cc521f921459d9925.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/win/happy.png"
-dest_files=["res://.godot/imported/happy.png-e61616a4fde4a2406e85e6f77f3d2653.ctex"]
+source_file="res://assets/art/pattern_previews/pattern-2.png"
+dest_files=["res://.godot/imported/pattern-2.png-526b2ad7866d4b7cc521f921459d9925.ctex"]
 
 [params]
 
