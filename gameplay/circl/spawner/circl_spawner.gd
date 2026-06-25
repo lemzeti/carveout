@@ -15,7 +15,7 @@ const MAX_ROTATION : float = 45.0 # In radians
 @export var health_editor : HealthEditor = null
 
 @export_group("Circl Stats")
-@export var circl_health : float = 5.0
+@export var circl_health : int = 5
 @export var circl_speed : float = 750.0
 
 
@@ -51,6 +51,7 @@ func _shoot() -> void:
 	circl.global_position = global_position
 
 	circl_root.add_child(circl)
+	Game.circl_used += 1
 
 
 func _init_signals() -> void:

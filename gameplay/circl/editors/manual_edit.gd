@@ -2,11 +2,12 @@ class_name HealthEditor
 extends LineEdit
 
 
-var value : int = 1
+@export var value : int = 1
 
 
 func _ready() -> void:
 	text = str(value)
+	text_changed.emit(text)
 
 
 func _on_text_changed(new_text : String) -> void:

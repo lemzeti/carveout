@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cs2o7jr0pm6p6"]
 
 [ext_resource type="Script" uid="uid://bfumt2ciwvl1e" path="res://gameplay/circl/circl/circl.gd" id="1_kebjp"]
-[ext_resource type="Texture2D" uid="uid://01o823argq1r" path="res://assets/art/icon.svg" id="2_bqiq8"]
+[ext_resource type="Texture2D" uid="uid://c733vvaycftuu" path="res://assets/art/128-circle.png" id="2_othnu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hi1gw"]
 radius = 12.0
@@ -13,5 +13,16 @@ script = ExtResource("1_kebjp")
 shape = SubResource("CircleShape2D_hi1gw")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1931403257]
-scale = Vector2(0.140625, 0.140625)
-texture = ExtResource("2_bqiq8")
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.1875, 0.18750003)
+texture = ExtResource("2_othnu")
+
+[node name="Label" type="Label" parent="." unique_id=190843166]
+unique_name_in_owner = true
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

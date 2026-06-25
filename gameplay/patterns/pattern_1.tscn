@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://xr7yl2b8yyyx"]
+
+[ext_resource type="Script" uid="uid://buqs82vi7ffyd" path="res://gameplay/patterns/pattern.gd" id="1_40f4p"]
+[ext_resource type="PackedScene" uid="uid://cf2mg8smasjso" path="res://gameplay/rectangl/rectangl.tscn" id="2_oeecn"]
+
+[node name="Pattern1" type="Node2D" unique_id=515804027]
+script = ExtResource("1_40f4p")
+
+[node name="TargetPattern" type="Node2D" parent="." unique_id=567908760]
+unique_name_in_owner = true
+
+[node name="Rectangl" parent="TargetPattern" unique_id=822925019 instance=ExtResource("2_oeecn")]
+health = 5
+
+[node name="Rectangl2" parent="TargetPattern" unique_id=1490980932 instance=ExtResource("2_oeecn")]
+position = Vector2(-72, 0)
+health = 5
+
+[node name="Rectangl3" parent="TargetPattern" unique_id=36005472 instance=ExtResource("2_oeecn")]
+position = Vector2(72, 0)
+health = 5
+
+[node name="Rectangl4" parent="TargetPattern" unique_id=552760753 instance=ExtResource("2_oeecn")]
+position = Vector2(0, 40)
+health = 5
+
+[node name="Rectangl5" parent="TargetPattern" unique_id=375305010 instance=ExtResource("2_oeecn")]
+position = Vector2(0, -40)
+health = 5
+
+[node name="Rectangl6" parent="TargetPattern" unique_id=600358831 instance=ExtResource("2_oeecn")]
+position = Vector2(0, 80)
+health = 5
+
+[node name="ExcessPattern" type="Node2D" parent="." unique_id=160999581]
+unique_name_in_owner = true
+
+[node name="Rectangl" parent="ExcessPattern" unique_id=1453681538 instance=ExtResource("2_oeecn")]
+position = Vector2(-72, 40)
+health = 2
+
+[node name="Rectangl2" parent="ExcessPattern" unique_id=2005902096 instance=ExtResource("2_oeecn")]
+position = Vector2(72, 40)
+health = 2
+
+[node name="Rectangl3" parent="ExcessPattern" unique_id=61620862 instance=ExtResource("2_oeecn")]
+position = Vector2(72, 80)
+health = 2
+
+[node name="Rectangl4" parent="ExcessPattern" unique_id=1548469341 instance=ExtResource("2_oeecn")]
+position = Vector2(-72, 80)
+health = 2
+
+[node name="Rectangl5" parent="ExcessPattern" unique_id=424934416 instance=ExtResource("2_oeecn")]
+position = Vector2(-72, -40)
+health = 2
+
+[node name="Rectangl6" parent="ExcessPattern" unique_id=1769685684 instance=ExtResource("2_oeecn")]
+position = Vector2(72, -40)
+health = 2
