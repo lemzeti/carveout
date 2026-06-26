@@ -4,6 +4,7 @@ extends Node2D
 
 const CIRCL_SCENE : PackedScene = preload("uid://cs2o7jr0pm6p6")
 const MAX_ROTATION : float = 45.0 # In radians
+const MAX_TRAJECTORY_POINTS : int = 5
 
 
 @export var circl_root : Node2D :
@@ -22,6 +23,11 @@ const MAX_ROTATION : float = 45.0 # In radians
 var direction : Vector2 = Vector2.ZERO
 
 
+@onready var sprite : Sprite2D = %Sprite
+@onready var aim_trajectory : Line2D = %AimTrajectory
+@onready var bounce_check : CharacterBody2D = %BounceCheck
+
+
 func _ready() -> void:
 	_init_signals()
 
@@ -30,6 +36,7 @@ func _input(event: InputEvent) -> void:
 	# Aiming
 	if event is InputEventMouseMotion:
 		_aim(event.position)
+		_update_trajectory()
 
 	# Shooting
 	if event is InputEventKey:
@@ -39,7 +46,7 @@ func _input(event: InputEvent) -> void:
 
 func _aim(pos : Vector2) -> void:
 	direction = (pos - global_position).normalized()
-	look_at(direction) # Temporary, breaks when position != Vec2(0)
+	sprite.look_at(direction)
 
 
 func _shoot() -> void:
@@ -52,6 +59,28 @@ func _shoot() -> void:
 
 	circl_root.add_child(circl)
 	Game.circl_used += 1
+
+
+func _update_trajectory() -> void:
+	# Clear previous trajectory
+	aim_trajectory.clear_points()
+
+	# Simulate actual Circl
+	var traj_position : Vector2 = Vector2.ZERO
+	var traj_direction : Vector2 = direction
+	var traj_motion : Vector2 = traj_direction * circl_speed
+
+	# Draw points
+	for i in MAX_TRAJECTORY_POINTS:
+		aim_trajectory.add_point(traj_position)
+
+		# Bounce off stuff
+		var collision := bounce_check.move_and_collide(traj_motion, true)
+		if collision:
+			traj_direction = traj_direction.bounce(collision.get_normal())
+
+		traj_position += traj_motion
+		bounce_check.position = traj_position
 
 
 func _init_signals() -> void:

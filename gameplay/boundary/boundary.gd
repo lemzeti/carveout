@@ -1,0 +1,2 @@
+class_name Boundary
+extends StaticBody2D

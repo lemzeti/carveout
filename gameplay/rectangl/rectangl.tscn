@@ -7,6 +7,8 @@
 size = Vector2(64, 32)
 
 [node name="Rectangl" type="StaticBody2D" unique_id=822925019]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_682vc")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1552315843]
@@ -14,16 +16,6 @@ shape = SubResource("RectangleShape2D_64d0l")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1953045547]
 unique_name_in_owner = true
-scale = Vector2(6.4, 4.799999)
+position = Vector2(-2.861023e-06, 0.1940309)
+scale = Vector2(6.3999996, 4.8388057)
 texture = ExtResource("2_64d0l")
-
-[node name="Label" type="Label" parent="." unique_id=1970374598]
-unique_name_in_owner = true
-offset_left = -32.0
-offset_top = -16.0
-offset_right = 32.0
-offset_bottom = 16.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1

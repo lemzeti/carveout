@@ -2,10 +2,38 @@
 
 [ext_resource type="Script" uid="uid://bvymft0v01wje" path="res://gameplay/circl/spawner/circl_spawner.gd" id="1_nmu0g"]
 [ext_resource type="Texture2D" uid="uid://01o823argq1r" path="res://assets/art/icon.svg" id="2_l4fut"]
+[ext_resource type="Texture2D" uid="uid://dfrfg6twqenpd" path="res://assets/art/effects/repeating-trajectory.png" id="3_sutlo"]
+
+[sub_resource type="Curve" id="Curve_l4a84"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5019258), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sutlo"]
+radius = 12.0
 
 [node name="CirclSpawner" type="Node2D" unique_id=2031497970]
 script = ExtResource("1_nmu0g")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=104288947]
-scale = Vector2(0.375, 0.125)
+unique_name_in_owner = true
+rotation = 1.5707964
+scale = Vector2(0.5, 0.1875)
 texture = ExtResource("2_l4fut")
+
+[node name="AimTrajectory" type="Line2D" parent="." unique_id=642581649]
+unique_name_in_owner = true
+texture_repeat = 2
+position = Vector2(-2.9802322e-08, 3.5762787e-07)
+scale = Vector2(0.74904466, 0.72499996)
+width = 20.0
+width_curve = SubResource("Curve_l4a84")
+texture = ExtResource("3_sutlo")
+texture_mode = 1
+
+[node name="BounceCheck" type="CharacterBody2D" parent="AimTrajectory" unique_id=317317092]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AimTrajectory/BounceCheck" unique_id=1038172988]
+shape = SubResource("CircleShape2D_sutlo")

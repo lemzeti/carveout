@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dfligyjmtlex4" path="res://gameplay/circl/spawner/circl_spawner.tscn" id="1_8fcwd"]
 [ext_resource type="Script" uid="uid://6qsr261l24lh" path="res://core/main/main.gd" id="1_yibi5"]
 [ext_resource type="Texture2D" uid="uid://01o823argq1r" path="res://assets/art/icon.svg" id="2_6vymn"]
+[ext_resource type="Script" uid="uid://b15kg564phb1n" path="res://gameplay/boundary/boundary.gd" id="3_5alkf"]
 [ext_resource type="Script" uid="uid://2bf1f4eo57mo" path="res://gameplay/circl/editors/manual_edit.gd" id="3_vwfi5"]
 [ext_resource type="Texture2D" uid="uid://bbg3o8loen27k" path="res://assets/art/stickers/win-sticker.png.png" id="5_k5wvu"]
 
@@ -18,6 +19,15 @@ size = Vector2(64, 592)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5alkf"]
 size = Vector2(896, 64)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5alkf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qctb3"]
+bg_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_detail = 12
+
 [node name="Main" type="Node" unique_id=1524745738]
 process_mode = 3
 script = ExtResource("1_yibi5")
@@ -28,34 +38,78 @@ metadata/_edit_horizontal_guides_ = [1045.0]
 [node name="TransitionTweenTimerHelper" type="Timer" parent="Systems" unique_id=34524477]
 unique_name_in_owner = true
 
+[node name="Background" type="ColorRect" parent="." unique_id=1315133451]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="World" type="Node2D" parent="." unique_id=1137839297]
 process_mode = 1
 
 [node name="BoundaryRoot" type="Node2D" parent="World" unique_id=1814242193]
 
 [node name="LeftBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=1290138187]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("3_5alkf")
 
 [node name="Collision" type="CollisionShape2D" parent="World/BoundaryRoot/LeftBoundary" unique_id=298585693]
 position = Vector2(352, 360)
 shape = SubResource("RectangleShape2D_k5wvu")
 
+[node name="ColorRect" type="ColorRect" parent="World/BoundaryRoot/LeftBoundary" unique_id=990521215]
+offset_left = 368.0
+offset_top = 48.0
+offset_right = 384.0
+offset_bottom = 672.0
+
 [node name="TopBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=458977630]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("3_5alkf")
 
 [node name="Collision" type="CollisionShape2D" parent="World/BoundaryRoot/TopBoundary" unique_id=1881730174]
 position = Vector2(832, 32)
 shape = SubResource("RectangleShape2D_81xgm")
 
+[node name="ColorRect" type="ColorRect" parent="World/BoundaryRoot/TopBoundary" unique_id=1190029545]
+offset_left = 384.0
+offset_top = 48.0
+offset_right = 1216.0
+offset_bottom = 64.0
+
 [node name="RightBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=1289682243]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("3_5alkf")
 
 [node name="Collision" type="CollisionShape2D" parent="World/BoundaryRoot/RightBoundary" unique_id=1385127670]
 position = Vector2(1248, 360)
 shape = SubResource("RectangleShape2D_qctb3")
 
+[node name="ColorRect" type="ColorRect" parent="World/BoundaryRoot" unique_id=455935769]
+offset_left = 1216.0
+offset_top = 48.0
+offset_right = 1232.0
+offset_bottom = 672.0
+
 [node name="BottomBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=1543129842]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("3_5alkf")
 
 [node name="Collision" type="CollisionShape2D" parent="World/BoundaryRoot/BottomBoundary" unique_id=933394608]
 position = Vector2(832, 688)
 shape = SubResource("RectangleShape2D_5alkf")
+
+[node name="ColorRect2" type="ColorRect" parent="World/BoundaryRoot/BottomBoundary" unique_id=612349981]
+offset_left = 384.0
+offset_top = 656.0
+offset_right = 1216.0
+offset_bottom = 672.0
 
 [node name="PatternRoot" type="Node2D" parent="World" unique_id=544639570]
 unique_name_in_owner = true
@@ -65,13 +119,12 @@ unique_name_in_owner = true
 position = Vector2(800, 320)
 
 [node name="CirclRoot" type="Node2D" parent="World" unique_id=624857552]
+unique_name_in_owner = true
 
 [node name="CirclSpawner" parent="World/CirclRoot" unique_id=2031497970 node_paths=PackedStringArray("health_editor") instance=ExtResource("1_8fcwd")]
 unique_name_in_owner = true
 position = Vector2(800, 576)
 health_editor = NodePath("../../../HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor")
-
-[node name="EffectsRoot" type="Node2D" parent="World" unique_id=742337684]
 
 [node name="HudLayer" type="CanvasLayer" parent="." unique_id=1482540470]
 process_mode = 1
@@ -87,12 +140,16 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
 offset_right = 320.0
+offset_bottom = -16.0
 grow_vertical = 2
 
 [node name="PatternPreview" type="Panel" parent="HudLayer/HudRoot/Panels" unique_id=791189235]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5alkf")
 
 [node name="Pattern" type="TextureRect" parent="HudLayer/HudRoot/Panels/PatternPreview" unique_id=199840996]
 unique_name_in_owner = true
@@ -113,12 +170,15 @@ texture = ExtResource("2_6vymn")
 [node name="Settings" type="Panel" parent="HudLayer/HudRoot/Panels" unique_id=50116792]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5alkf")
 
 [node name="CirclHealthEdit" type="Control" parent="HudLayer/HudRoot/Panels/Settings" unique_id=1455992344]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -60.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -127,12 +187,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -68.0
-offset_top = 72.0
-offset_right = -44.0
-offset_bottom = 103.0
+offset_left = -76.0
+offset_top = 58.0
+offset_right = -52.0
+offset_bottom = 106.0
 grow_horizontal = 2
 focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
 text = "-"
 
 [node name="HealthEditor" type="LineEdit" parent="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit" unique_id=421478252]
@@ -142,14 +203,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -109.0
-offset_right = 40.0
-offset_bottom = -69.0
+offset_left = -44.0
+offset_top = -113.0
+offset_right = 44.0
+offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "1"
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
+placeholder_text = "..."
 alignment = 1
 script = ExtResource("3_vwfi5")
 
@@ -158,12 +221,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 44.0
-offset_top = 72.0
-offset_right = 68.0
-offset_bottom = 103.0
+offset_left = 52.0
+offset_top = 58.0
+offset_right = 76.0
+offset_bottom = 106.0
 grow_horizontal = 2
 focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
 text = "+"
 
 [node name="Label" type="Label" parent="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit" unique_id=1550268855]
@@ -171,28 +235,151 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -43.0
-offset_top = 40.0
-offset_right = 43.0
-offset_bottom = 63.0
+offset_left = -57.0
+offset_top = 20.0
+offset_right = 59.0
+offset_bottom = 61.0
 grow_horizontal = 2
-text = "circl health"
+theme_override_font_sizes/font_size = 25
+text = "bounce"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Timer" type="Label" parent="HudLayer/HudRoot/Panels/Settings" unique_id=2117502470]
+[node name="MainMenuButton" type="Button" parent="HudLayer/HudRoot/Panels/Settings" unique_id=769746544]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -76.0
+offset_right = 84.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
+text = " main menu "
+
+[node name="F" type="ColorRect" parent="HudLayer/HudRoot" unique_id=1802187480]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -472.0
+offset_top = 344.0
+offset_right = -472.0
+offset_bottom = -344.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 35
-text = "00:00"
+color = Color(0, 0, 0, 1)
+
+[node name="Lines?" type="ColorRect" parent="HudLayer/HudRoot" unique_id=220036790]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.02745098, 0.02745098, 1)
+
+[node name="Lines?2" type="ColorRect" parent="HudLayer/HudRoot" unique_id=748830648]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_right = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.02745098, 0.02745098, 1)
+
+[node name="Lines?3" type="ColorRect" parent="HudLayer/HudRoot" unique_id=1339856430]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = -704.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.02745098, 0.02745098, 1)
+
+[node name="Lines?4" type="ColorRect" parent="HudLayer/HudRoot" unique_id=280631505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 704.0
+offset_right = 1280.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.02745098, 0.02745098, 1)
+
+[node name="Lines?5" type="ColorRect" parent="HudLayer/HudRoot" unique_id=920063673]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1264.0
+offset_right = 1280.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.02745098, 0.02745098, 1)
+
+[node name="Lines?6" type="ColorRect" parent="HudLayer/HudRoot" unique_id=2074229394]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 344.0
+offset_top = 24.0
+offset_right = 360.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+
+[node name="Lines?7" type="ColorRect" parent="HudLayer/HudRoot" unique_id=496947297]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1240.0
+offset_top = 24.0
+offset_right = 1256.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+
+[node name="Lines?8" type="ColorRect" parent="HudLayer/HudRoot" unique_id=210171643]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = -680.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+
+[node name="Lines?9" type="ColorRect" parent="HudLayer/HudRoot" unique_id=1520882051]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_top = 680.0
+offset_right = 1240.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1247443078]
 unique_name_in_owner = true
@@ -252,7 +439,9 @@ text = "press 'p' or 'esc' to unpause"
 horizontal_alignment = 1
 
 [node name="StickerLayer" type="CanvasLayer" parent="." unique_id=2045700172]
+unique_name_in_owner = true
 layer = 99
+visible = false
 
 [node name="StickerRoot" type="Control" parent="StickerLayer" unique_id=54897456]
 layout_mode = 3
@@ -271,10 +460,10 @@ anchor_left = 0.625
 anchor_top = 0.44400004
 anchor_right = 0.625
 anchor_bottom = 0.44400004
-offset_left = -8.0
-offset_top = -7.680023
-offset_right = 8.0
-offset_bottom = 8.319977
+offset_left = -128.0
+offset_top = -95.68002
+offset_right = 128.0
+offset_bottom = 160.31998
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(128, 128)
@@ -343,7 +532,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1280.0
+offset_left = -1380.0
 offset_right = -1280.0
 grow_horizontal = 2
 grow_vertical = 2

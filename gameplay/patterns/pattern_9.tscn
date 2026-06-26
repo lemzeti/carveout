@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://chd6dhx82p0xx"]
+
+[ext_resource type="Script" uid="uid://buqs82vi7ffyd" path="res://gameplay/patterns/pattern.gd" id="1_ey7bd"]
+[ext_resource type="PackedScene" uid="uid://cf2mg8smasjso" path="res://gameplay/rectangl/rectangl.tscn" id="2_uwvj4"]
+
+[node name="Pattern9" type="Node2D" unique_id=515804027]
+script = ExtResource("1_ey7bd")
+
+[node name="TargetPattern" type="Node2D" parent="." unique_id=567908760]
+unique_name_in_owner = true
+
+[node name="Rectangl" parent="TargetPattern" unique_id=822925019 instance=ExtResource("2_uwvj4")]
+position = Vector2(-144, -112)
+
+[node name="Rectangl2" parent="TargetPattern" unique_id=811952890 instance=ExtResource("2_uwvj4")]
+position = Vector2(-72, -112)
+
+[node name="Rectangl3" parent="TargetPattern" unique_id=2070859974 instance=ExtResource("2_uwvj4")]
+position = Vector2(0, -112)
+
+[node name="Rectangl4" parent="TargetPattern" unique_id=1265559868 instance=ExtResource("2_uwvj4")]
+position = Vector2(72, -112)
+
+[node name="Rectangl5" parent="TargetPattern" unique_id=2047011534 instance=ExtResource("2_uwvj4")]
+position = Vector2(144, -112)
+
+[node name="Rectangl11" parent="TargetPattern" unique_id=1184730385 instance=ExtResource("2_uwvj4")]
+position = Vector2(-144, 0)
+
+[node name="Rectangl12" parent="TargetPattern" unique_id=1623830969 instance=ExtResource("2_uwvj4")]
+position = Vector2(-72, 0)
+
+[node name="Rectangl13" parent="TargetPattern" unique_id=335627337 instance=ExtResource("2_uwvj4")]
+
+[node name="Rectangl14" parent="TargetPattern" unique_id=2069533301 instance=ExtResource("2_uwvj4")]
+position = Vector2(72, 0)
+
+[node name="Rectangl15" parent="TargetPattern" unique_id=1927628533 instance=ExtResource("2_uwvj4")]
+position = Vector2(144, 0)
+
+[node name="Rectangl21" parent="TargetPattern" unique_id=672249299 instance=ExtResource("2_uwvj4")]
+position = Vector2(-144, 112)
+
+[node name="Rectangl22" parent="TargetPattern" unique_id=707253603 instance=ExtResource("2_uwvj4")]
+position = Vector2(-72, 112)
+
+[node name="Rectangl23" parent="TargetPattern" unique_id=17271930 instance=ExtResource("2_uwvj4")]
+position = Vector2(0, 112)
+
+[node name="Rectangl24" parent="TargetPattern" unique_id=353442166 instance=ExtResource("2_uwvj4")]
+position = Vector2(72, 112)
+
+[node name="Rectangl25" parent="TargetPattern" unique_id=1929933741 instance=ExtResource("2_uwvj4")]
+position = Vector2(144, 112)
+
+[node name="ExcessPattern" type="Node2D" parent="." unique_id=160999581]
+unique_name_in_owner = true
+
+[node name="Rectangl6" parent="ExcessPattern" unique_id=107900094 instance=ExtResource("2_uwvj4")]
+position = Vector2(-144, -56)
+
+[node name="Rectangl7" parent="ExcessPattern" unique_id=1577385668 instance=ExtResource("2_uwvj4")]
+position = Vector2(-72, -56)
+
+[node name="Rectangl8" parent="ExcessPattern" unique_id=1737058823 instance=ExtResource("2_uwvj4")]
+position = Vector2(0, -56)
+
+[node name="Rectangl9" parent="ExcessPattern" unique_id=1305305749 instance=ExtResource("2_uwvj4")]
+position = Vector2(72, -56)
+
+[node name="Rectangl10" parent="ExcessPattern" unique_id=1560173821 instance=ExtResource("2_uwvj4")]
+position = Vector2(144, -56)
+
+[node name="Rectangl16" parent="ExcessPattern" unique_id=1485503854 instance=ExtResource("2_uwvj4")]
+position = Vector2(-144, 56)
+
+[node name="Rectangl17" parent="ExcessPattern" unique_id=327876005 instance=ExtResource("2_uwvj4")]
+position = Vector2(-72, 56)
+
+[node name="Rectangl18" parent="ExcessPattern" unique_id=1700865626 instance=ExtResource("2_uwvj4")]
+position = Vector2(0, 56)
+
+[node name="Rectangl19" parent="ExcessPattern" unique_id=525685809 instance=ExtResource("2_uwvj4")]
+position = Vector2(72, 56)
+
+[node name="Rectangl20" parent="ExcessPattern" unique_id=311083849 instance=ExtResource("2_uwvj4")]
+position = Vector2(144, 56)

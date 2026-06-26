@@ -10,103 +10,78 @@ script = ExtResource("1_40f4p")
 unique_name_in_owner = true
 
 [node name="Rectangl" parent="TargetPattern" unique_id=822925019 instance=ExtResource("2_oeecn")]
-health = 3
-
-[node name="Rectangl2" parent="TargetPattern" unique_id=1957176588 instance=ExtResource("2_oeecn")]
-position = Vector2(0, -56)
-health = 3
-
-[node name="Rectangl3" parent="TargetPattern" unique_id=1497251219 instance=ExtResource("2_oeecn")]
-position = Vector2(0, -112)
-health = 3
-
-[node name="Rectangl4" parent="TargetPattern" unique_id=869651513 instance=ExtResource("2_oeecn")]
-position = Vector2(-72, -112)
-health = 3
-
-[node name="Rectangl5" parent="TargetPattern" unique_id=1449412988 instance=ExtResource("2_oeecn")]
 position = Vector2(-144, -112)
-health = 3
 
-[node name="Rectangl6" parent="TargetPattern" unique_id=1503778241 instance=ExtResource("2_oeecn")]
+[node name="Rectangl2" parent="TargetPattern" unique_id=1302238931 instance=ExtResource("2_oeecn")]
+position = Vector2(-72, -112)
+
+[node name="Rectangl3" parent="TargetPattern" unique_id=1780635186 instance=ExtResource("2_oeecn")]
+position = Vector2(0, -112)
+
+[node name="Rectangl4" parent="TargetPattern" unique_id=1265018288 instance=ExtResource("2_oeecn")]
 position = Vector2(72, -112)
-health = 3
 
-[node name="Rectangl7" parent="TargetPattern" unique_id=1763961520 instance=ExtResource("2_oeecn")]
+[node name="Rectangl5" parent="TargetPattern" unique_id=1329778387 instance=ExtResource("2_oeecn")]
 position = Vector2(144, -112)
-health = 3
 
-[node name="Rectangl8" parent="TargetPattern" unique_id=230446880 instance=ExtResource("2_oeecn")]
+[node name="Rectangl6" parent="TargetPattern" unique_id=580000674 instance=ExtResource("2_oeecn")]
 position = Vector2(-144, -56)
-health = 3
 
-[node name="Rectangl9" parent="TargetPattern" unique_id=394135807 instance=ExtResource("2_oeecn")]
+[node name="Rectangl7" parent="TargetPattern" unique_id=1796591100 instance=ExtResource("2_oeecn")]
 position = Vector2(-72, -56)
-health = 3
 
-[node name="Rectangl10" parent="TargetPattern" unique_id=836578059 instance=ExtResource("2_oeecn")]
+[node name="Rectangl8" parent="TargetPattern" unique_id=140803174 instance=ExtResource("2_oeecn")]
+position = Vector2(0, -56)
+
+[node name="Rectangl9" parent="TargetPattern" unique_id=464611534 instance=ExtResource("2_oeecn")]
 position = Vector2(72, -56)
-health = 3
 
-[node name="Rectangl11" parent="TargetPattern" unique_id=2056030741 instance=ExtResource("2_oeecn")]
+[node name="Rectangl10" parent="TargetPattern" unique_id=1648646925 instance=ExtResource("2_oeecn")]
 position = Vector2(144, -56)
-health = 3
 
-[node name="Rectangl12" parent="TargetPattern" unique_id=1769801818 instance=ExtResource("2_oeecn")]
+[node name="Rectangl11" parent="TargetPattern" unique_id=1913458133 instance=ExtResource("2_oeecn")]
 position = Vector2(-144, 0)
-health = 3
 
-[node name="Rectangl13" parent="TargetPattern" unique_id=943748885 instance=ExtResource("2_oeecn")]
+[node name="Rectangl12" parent="TargetPattern" unique_id=1950572870 instance=ExtResource("2_oeecn")]
 position = Vector2(-72, 0)
-health = 3
 
-[node name="Rectangl14" parent="TargetPattern" unique_id=371736057 instance=ExtResource("2_oeecn")]
+[node name="Rectangl13" parent="TargetPattern" unique_id=7803739 instance=ExtResource("2_oeecn")]
+
+[node name="Rectangl14" parent="TargetPattern" unique_id=681225365 instance=ExtResource("2_oeecn")]
 position = Vector2(72, 0)
-health = 3
 
-[node name="Rectangl15" parent="TargetPattern" unique_id=1816790926 instance=ExtResource("2_oeecn")]
+[node name="Rectangl15" parent="TargetPattern" unique_id=1716924467 instance=ExtResource("2_oeecn")]
 position = Vector2(144, 0)
-health = 3
 
-[node name="Rectangl16" parent="TargetPattern" unique_id=113037958 instance=ExtResource("2_oeecn")]
+[node name="Rectangl16" parent="TargetPattern" unique_id=1365500514 instance=ExtResource("2_oeecn")]
 position = Vector2(-144, 56)
-health = 3
 
-[node name="Rectangl17" parent="TargetPattern" unique_id=690715288 instance=ExtResource("2_oeecn")]
+[node name="Rectangl20" parent="TargetPattern" unique_id=23663370 instance=ExtResource("2_oeecn")]
 position = Vector2(144, 56)
-health = 3
 
-[node name="Rectangl18" parent="TargetPattern" unique_id=565204196 instance=ExtResource("2_oeecn")]
+[node name="Rectangl21" parent="TargetPattern" unique_id=850180684 instance=ExtResource("2_oeecn")]
 position = Vector2(-144, 112)
-health = 3
 
-[node name="Rectangl19" parent="TargetPattern" unique_id=1777235667 instance=ExtResource("2_oeecn")]
+[node name="Rectangl23" parent="TargetPattern" unique_id=1043717469 instance=ExtResource("2_oeecn")]
 position = Vector2(0, 112)
-health = 3
 
-[node name="Rectangl20" parent="TargetPattern" unique_id=924979227 instance=ExtResource("2_oeecn")]
+[node name="Rectangl25" parent="TargetPattern" unique_id=1732943096 instance=ExtResource("2_oeecn")]
 position = Vector2(144, 112)
-health = 3
 
 [node name="ExcessPattern" type="Node2D" parent="." unique_id=160999581]
 unique_name_in_owner = true
 
-[node name="Rectangl" parent="ExcessPattern" unique_id=451575684 instance=ExtResource("2_oeecn")]
-position = Vector2(0, 56)
-health = 2
-
-[node name="Rectangl2" parent="ExcessPattern" unique_id=1610210889 instance=ExtResource("2_oeecn")]
+[node name="Rectangl17" parent="ExcessPattern" unique_id=1830106740 instance=ExtResource("2_oeecn")]
 position = Vector2(-72, 56)
-health = 2
 
-[node name="Rectangl3" parent="ExcessPattern" unique_id=1050564348 instance=ExtResource("2_oeecn")]
+[node name="Rectangl18" parent="ExcessPattern" unique_id=1411782173 instance=ExtResource("2_oeecn")]
+position = Vector2(0, 56)
+
+[node name="Rectangl19" parent="ExcessPattern" unique_id=1714170757 instance=ExtResource("2_oeecn")]
 position = Vector2(72, 56)
-health = 2
 
-[node name="Rectangl4" parent="ExcessPattern" unique_id=1142568379 instance=ExtResource("2_oeecn")]
+[node name="Rectangl20" parent="ExcessPattern" unique_id=977625851 instance=ExtResource("2_oeecn")]
 position = Vector2(-72, 112)
-health = 2
 
-[node name="Rectangl5" parent="ExcessPattern" unique_id=279545062 instance=ExtResource("2_oeecn")]
+[node name="Rectangl21" parent="ExcessPattern" unique_id=1442351868 instance=ExtResource("2_oeecn")]
 position = Vector2(72, 112)
-health = 2

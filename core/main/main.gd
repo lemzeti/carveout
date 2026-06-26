@@ -3,8 +3,8 @@ extends Node
 
 
 const TRANSITION_TWEEN_DURATION : float = 1.0
-const STICKER_TWEEN_DURATION : float = 2.0
-const STICKER_SCALE_MAX : Vector2 = Vector2(1.8, 1.8)
+const STICKER_TWEEN_DURATION : float = 3.0
+const STICKER_SCALE_MAX : Vector2 = Vector2(2.0, 2.0)
 
 
 # In order; e.g. index 0 = pattern 1, and so on
@@ -47,12 +47,14 @@ var transition_tween : Tween = null
 @onready var pattern_preview : TextureRect = %Pattern
 
 @onready var circl_spawner : CirclSpawner = %CirclSpawner
+@onready var circl_root : Node2D = %CirclRoot
 
 @onready var sticker : TextureRect = %Sticker
 @onready var transition_tween_timer_helper : Timer = %TransitionTweenTimerHelper
 
 @onready var pause_layer : CanvasLayer = %PauseLayer
 @onready var victory_layer : CanvasLayer = %VictoryLayer
+@onready var sticker_layer : CanvasLayer = %StickerLayer
 @onready var transition_layer : CanvasLayer = %TransitionLayer
 @onready var transition_color : ColorRect = %TransitionColor
 
@@ -122,9 +124,11 @@ func _init_ui_layers() -> void:
 	sticker.scale = default_sticker_scale
 
 
-func _transition() -> void:
-	transition_color.global_position.x = -(screen_size.x)
+func _transition(prompt : String) -> void:
+	transition_color.global_position.x = -(screen_size.x + (transition_color.size.x - screen_size.x))
 	transition_layer.show()
+
+	prompt = prompt.to_lower()
 
 	if transition_tween != null:
 		transition_tween.kill()
@@ -148,8 +152,12 @@ func _transition() -> void:
 	while transition_tween.is_running():
 		await get_tree().process_frame
 
-		if transition_color.global_position == Vector2.ZERO:
-			transition_tween_timer_helper.start()
+		if transition_color.global_position >= Vector2.ZERO:
+			_reset_sticker()
+			if prompt == "w": # Win
+				next_pattern()
+			elif prompt == "l": # Lose
+				_load_pattern(pattern_scenes[pattern_index])
 			break
 
 func _animate_sticker(prompt : String) -> void:
@@ -160,6 +168,9 @@ func _animate_sticker(prompt : String) -> void:
 		sticker.texture = win_sticker
 	elif prompt == "l": # Lose
 		sticker.texture = lose_sticker
+
+	if not sticker_layer.visible:
+		sticker_layer.show()
 	sticker.show()
 
 	if sticker_tween != null:
@@ -180,19 +191,28 @@ func _animate_sticker(prompt : String) -> void:
 
 func _reset_sticker() -> void:
 	sticker.hide()
+	sticker_layer.hide()
 	sticker.scale = default_sticker_scale
+
+
+func _ded_all_circl() -> void:
+	for child in circl_root.get_children():
+		if child is Circl:
+			child.set_physics_process(false)
+			if not is_instance_valid(child):
+				return
+			child.ded()
 
 
 func victory() -> void:
 	circl_spawner.disable()
+	circl_spawner.aim_trajectory.clear_points()
 	await _animate_sticker("W")
-	await _transition()
-	await transition_tween_timer_helper.timeout
-	_reset_sticker()
-	next_pattern()
+	await _transition("W")
 
 
 func true_victory() -> void:
+	await transition_tween.finished
 	# add stats like circl used, time taken to beat patterns, etc.
 	# add "restart" or "main menu" button
 	# add local "previous record" of stats
@@ -201,11 +221,11 @@ func true_victory() -> void:
 
 func lose() -> void:
 	circl_spawner.disable()
+	circl_spawner.aim_trajectory.clear_points()
+	_ded_all_circl()
+	await get_tree().create_timer(1.0).timeout
 	await _animate_sticker("L")
-	await _transition()
-	await transition_tween_timer_helper.timeout
-	_reset_sticker()
-	_load_pattern(pattern_scenes[pattern_index])
+	await _transition("L")
 
 
 func next_pattern() -> void:
