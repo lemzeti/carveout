@@ -1,14 +1,18 @@
 extends Node
 
 
-const MAX_HEALTH : int = 5
-const MIN_HEALTH : int = 1
+const MAX_HEALTH : int = 4
+const MIN_HEALTH : int = 0
 
 
 var circl_used : int = 0
 
+var happy_stickers : int = 0
+var sad_stickers : int = 0
+
 
 var main_scene : Main = null
+var current_pattern_num : int = 0
 
 
 func victory() -> void:

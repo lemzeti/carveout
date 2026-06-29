@@ -4,9 +4,11 @@ extends StaticBody2D
 
 @warning_ignore("unused_signal")
 signal rectangl_ded(rec : Rectangl)
+signal rectangl_hit(rec : Rectangl)
 
 
 @export_range(1, 3, 1) var health : int = 3
+@export_range(1, 3, 1) var target_health : int = 3
 @export_group("Health Colors")
 @export var three_health : Color = Color.RED
 @export var two_health : Color = Color.ORANGE
@@ -22,6 +24,7 @@ func _ready() -> void:
 
 func decrement_health(amount : int) -> void:
 	health -= amount
+	rectangl_hit.emit(self)
 	_recolor_according_to_health()
 	if health <= 0:
 		rectangl_ded.emit(self)

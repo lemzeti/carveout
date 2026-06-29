@@ -2,10 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://dfligyjmtlex4" path="res://gameplay/circl/spawner/circl_spawner.tscn" id="1_8fcwd"]
 [ext_resource type="Script" uid="uid://6qsr261l24lh" path="res://core/main/main.gd" id="1_yibi5"]
-[ext_resource type="Texture2D" uid="uid://01o823argq1r" path="res://assets/art/icon.svg" id="2_6vymn"]
+[ext_resource type="AudioStream" uid="uid://oewkfs00uf1c" path="res://assets/audio/sfx/start-game.wav" id="2_vxc0a"]
 [ext_resource type="Script" uid="uid://b15kg564phb1n" path="res://gameplay/boundary/boundary.gd" id="3_5alkf"]
+[ext_resource type="Script" uid="uid://32i6ppc6j8ut" path="res://gameplay/boundary/spawner_boundary.gd" id="3_qctb3"]
 [ext_resource type="Script" uid="uid://2bf1f4eo57mo" path="res://gameplay/circl/editors/manual_edit.gd" id="3_vwfi5"]
 [ext_resource type="Texture2D" uid="uid://bbg3o8loen27k" path="res://assets/art/stickers/win-sticker.png.png" id="5_k5wvu"]
+[ext_resource type="Texture2D" uid="uid://dlm4ca6bi310u" path="res://assets/art/pattern_previews/pattern-1.png" id="6_xwlw8"]
+[ext_resource type="PackedScene" uid="uid://cs2o7jr0pm6p6" path="res://gameplay/circl/circl/circl.tscn" id="8_5alkf"]
+[ext_resource type="Texture2D" uid="uid://d0gi2fjqxca0r" path="res://assets/art/stickers/lose-sticker.png" id="9_xwlw8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5wvu"]
 size = Vector2(64, 720)
@@ -19,6 +23,9 @@ size = Vector2(64, 592)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5alkf"]
 size = Vector2(896, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxc0a"]
+size = Vector2(24, 48)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5alkf"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -28,6 +35,12 @@ border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
 corner_detail = 12
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwlw8"]
+size = Vector2(8, 736)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0ilk"]
+size = Vector2(1280, 8)
+
 [node name="Main" type="Node" unique_id=1524745738]
 process_mode = 3
 script = ExtResource("1_yibi5")
@@ -35,8 +48,16 @@ metadata/_edit_horizontal_guides_ = [1045.0]
 
 [node name="Systems" type="Node" parent="." unique_id=1105372152]
 
-[node name="TransitionTweenTimerHelper" type="Timer" parent="Systems" unique_id=34524477]
+[node name="PatternWL" type="AudioStreamPlayer" parent="Systems" unique_id=1155720146]
 unique_name_in_owner = true
+volume_db = -9.0
+
+[node name="BGM" type="AudioStreamPlayer" parent="Systems" unique_id=771846301]
+unique_name_in_owner = true
+
+[node name="StartGame" type="AudioStreamPlayer" parent="Systems" unique_id=554700853]
+unique_name_in_owner = true
+stream = ExtResource("2_vxc0a")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1315133451]
 anchors_preset = 15
@@ -50,6 +71,7 @@ color = Color(0, 0, 0, 1)
 process_mode = 1
 
 [node name="BoundaryRoot" type="Node2D" parent="World" unique_id=1814242193]
+unique_name_in_owner = true
 
 [node name="LeftBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=1290138187]
 collision_layer = 4
@@ -60,12 +82,6 @@ script = ExtResource("3_5alkf")
 position = Vector2(352, 360)
 shape = SubResource("RectangleShape2D_k5wvu")
 
-[node name="ColorRect" type="ColorRect" parent="World/BoundaryRoot/LeftBoundary" unique_id=990521215]
-offset_left = 368.0
-offset_top = 48.0
-offset_right = 384.0
-offset_bottom = 672.0
-
 [node name="TopBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=458977630]
 collision_layer = 4
 collision_mask = 9
@@ -74,12 +90,6 @@ script = ExtResource("3_5alkf")
 [node name="Collision" type="CollisionShape2D" parent="World/BoundaryRoot/TopBoundary" unique_id=1881730174]
 position = Vector2(832, 32)
 shape = SubResource("RectangleShape2D_81xgm")
-
-[node name="ColorRect" type="ColorRect" parent="World/BoundaryRoot/TopBoundary" unique_id=1190029545]
-offset_left = 384.0
-offset_top = 48.0
-offset_right = 1216.0
-offset_bottom = 64.0
 
 [node name="RightBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=1289682243]
 collision_layer = 4
@@ -90,12 +100,6 @@ script = ExtResource("3_5alkf")
 position = Vector2(1248, 360)
 shape = SubResource("RectangleShape2D_qctb3")
 
-[node name="ColorRect" type="ColorRect" parent="World/BoundaryRoot" unique_id=455935769]
-offset_left = 1216.0
-offset_top = 48.0
-offset_right = 1232.0
-offset_bottom = 672.0
-
 [node name="BottomBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=1543129842]
 collision_layer = 4
 collision_mask = 9
@@ -105,11 +109,18 @@ script = ExtResource("3_5alkf")
 position = Vector2(832, 688)
 shape = SubResource("RectangleShape2D_5alkf")
 
-[node name="ColorRect2" type="ColorRect" parent="World/BoundaryRoot/BottomBoundary" unique_id=612349981]
-offset_left = 384.0
-offset_top = 656.0
-offset_right = 1216.0
-offset_bottom = 672.0
+[node name="SpawnerBoundary" type="StaticBody2D" parent="World/BoundaryRoot" unique_id=1064803330]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_qctb3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/BoundaryRoot/SpawnerBoundary" unique_id=1361339080]
+position = Vector2(498, 576)
+shape = SubResource("RectangleShape2D_vxc0a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/BoundaryRoot/SpawnerBoundary" unique_id=1768671820]
+position = Vector2(1104, 576)
+shape = SubResource("RectangleShape2D_vxc0a")
 
 [node name="PatternRoot" type="Node2D" parent="World" unique_id=544639570]
 unique_name_in_owner = true
@@ -121,6 +132,12 @@ position = Vector2(800, 320)
 [node name="CirclRoot" type="Node2D" parent="World" unique_id=624857552]
 unique_name_in_owner = true
 
+[node name="LineWhereSpawnerCanMove" type="Line2D" parent="World/CirclRoot" unique_id=1365620824]
+unique_name_in_owner = true
+position = Vector2(800, 576)
+points = PackedVector2Array(-288, 0, 288, 0)
+width = 2.0
+
 [node name="CirclSpawner" parent="World/CirclRoot" unique_id=2031497970 node_paths=PackedStringArray("health_editor") instance=ExtResource("1_8fcwd")]
 unique_name_in_owner = true
 position = Vector2(800, 576)
@@ -129,6 +146,54 @@ health_editor = NodePath("../../../HudLayer/HudRoot/Panels/Settings/CirclHealthE
 [node name="HudLayer" type="CanvasLayer" parent="." unique_id=1482540470]
 process_mode = 1
 layer = 10
+
+[node name="Background" type="ColorRect" parent="HudLayer" unique_id=56338141]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 336.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -672.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Background2" type="ColorRect" parent="HudLayer" unique_id=764163256]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 336.0
+offset_top = 672.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Background3" type="ColorRect" parent="HudLayer" unique_id=317378433]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 336.0
+offset_top = 48.0
+offset_right = -912.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Background4" type="ColorRect" parent="HudLayer" unique_id=1952871990]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1232.0
+offset_top = 48.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="HudRoot" type="Control" parent="HudLayer" unique_id=615786913]
 layout_mode = 3
@@ -159,13 +224,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
+offset_left = -128.0
+offset_top = -72.0
+offset_right = 128.0
+offset_bottom = 184.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_6vymn")
+texture = ExtResource("6_xwlw8")
 
 [node name="Settings" type="Panel" parent="HudLayer/HudRoot/Panels" unique_id=50116792]
 layout_mode = 2
@@ -177,8 +242,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -60.0
-offset_bottom = -60.0
+offset_left = -1.0
+offset_top = 11.0
+offset_right = -1.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -252,15 +319,53 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -84.0
+offset_left = -104.0
 offset_top = -76.0
-offset_right = 84.0
+offset_right = 104.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
-text = " main menu "
+text = " main menu"
+
+[node name="RestartButton" type="Button" parent="HudLayer/HudRoot/Panels/Settings" unique_id=192279424]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 222.0
+offset_right = 256.0
+offset_bottom = 262.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
+text = "Restart"
+
+[node name="NextLevel" type="Button" parent="HudLayer/HudRoot/Panels/Settings" unique_id=1869814837]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 174.0
+offset_right = 256.0
+offset_bottom = 214.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
+text = "next level"
+
+[node name="AimGuideToggle" type="CheckButton" parent="HudLayer/HudRoot/Panels/Settings" unique_id=560725773]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.0
+offset_top = 134.0
+offset_right = 82.0
+offset_bottom = 160.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "aim guide"
 
 [node name="F" type="ColorRect" parent="HudLayer/HudRoot" unique_id=1802187480]
 layout_mode = 1
@@ -381,6 +486,53 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
+[node name="ColorRect" type="ColorRect" parent="HudLayer" unique_id=491157540]
+offset_left = 368.0
+offset_top = 48.0
+offset_right = 384.0
+offset_bottom = 672.0
+
+[node name="ColorRect2" type="ColorRect" parent="HudLayer" unique_id=685382793]
+offset_left = 384.0
+offset_top = 48.0
+offset_right = 1216.0
+offset_bottom = 64.0
+
+[node name="ColorRect3" type="ColorRect" parent="HudLayer" unique_id=362454916]
+offset_left = 1216.0
+offset_top = 48.0
+offset_right = 1232.0
+offset_bottom = 672.0
+
+[node name="ColorRect4" type="ColorRect" parent="HudLayer" unique_id=247957048]
+offset_left = 384.0
+offset_top = 656.0
+offset_right = 1216.0
+offset_bottom = 672.0
+
+[node name="Tutorial" type="Label" parent="HudLayer" unique_id=1249191220]
+unique_name_in_owner = true
+offset_left = 48.0
+offset_top = 61.0
+offset_right = 294.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 20
+text = "match the pattern!
+and the colors!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tutorial2" type="Label" parent="HudLayer" unique_id=410778720]
+unique_name_in_owner = true
+offset_left = 483.0
+offset_top = 608.0
+offset_right = 1120.0
+offset_bottom = 647.0
+theme_override_font_sizes/font_size = 20
+text = "space  - shoot                    WASD - move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1247443078]
 unique_name_in_owner = true
 process_mode = 2
@@ -489,27 +641,165 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = 40.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.654902)
+color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="VictoryLayer/VictoryRoot" unique_id=834561669]
+[node name="WinLabel" type="Label" parent="VictoryLayer/VictoryRoot" unique_id=834561669]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -30.5
-offset_top = -11.5
-offset_right = 30.5
-offset_bottom = 11.5
+offset_left = -208.0
+offset_top = -296.0
+offset_right = 199.0
+offset_bottom = -226.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "GGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinLabel2" type="Label" parent="VictoryLayer/VictoryRoot" unique_id=836303507]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -472.0
+offset_top = -120.0
+offset_right = 473.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "yeah; i haven't yet figured out why
+level 5 and 10 just automatically
+made you win.
+
+also, stickers above may or may not
+be perfectly accurate.
+
+thanks for playing :)
+- zt"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HappyStickerEq" type="Label" parent="VictoryLayer/VictoryRoot" unique_id=1460652157]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -392.0
+offset_top = -184.0
+offset_right = 15.0
+offset_bottom = -139.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
-text = "wow you win"
+text = "="
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SadStickerEq" type="Label" parent="VictoryLayer/VictoryRoot" unique_id=1772200737]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -181.0
+offset_right = 399.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HappyPoints" type="Label" parent="VictoryLayer/VictoryRoot" unique_id=967551921]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -184.0
+offset_right = -97.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SadPoints" type="Label" parent="VictoryLayer/VictoryRoot" unique_id=733074302]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 224.0
+offset_top = -181.0
+offset_right = 287.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SadSticker" type="TextureRect" parent="VictoryLayer/VictoryRoot" unique_id=414433372]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 168.0
+offset_right = 991.0
+offset_bottom = 424.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_xwlw8")
+
+[node name="HappySticker" type="TextureRect" parent="VictoryLayer/VictoryRoot" unique_id=960586245]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 168.0
+offset_right = 608.0
+offset_bottom = 424.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_k5wvu")
+
+[node name="MainMenuButton" type="Button" parent="VictoryLayer/VictoryRoot" unique_id=566222101]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -144.0
+offset_right = 128.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
+text = "main menu"
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=260603085]
 unique_name_in_owner = true
@@ -538,6 +828,202 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="MainMenuLayer" type="CanvasLayer" parent="." unique_id=881549085]
+unique_name_in_owner = true
+process_mode = 3
+layer = 250
+visible = false
+
+[node name="Background" type="ColorRect" parent="MainMenuLayer" unique_id=176103842]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.02745098, 0.02745098, 1)
+metadata/_edit_lock_ = true
+
+[node name="Boundary" type="Node2D" parent="MainMenuLayer" unique_id=712462712]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MainMenuLayer/Boundary" unique_id=1329468128]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainMenuLayer/Boundary/StaticBody2D" unique_id=1464308080]
+position = Vector2(-4, 360)
+shape = SubResource("RectangleShape2D_xwlw8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="MainMenuLayer/Boundary" unique_id=1610454893]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainMenuLayer/Boundary/StaticBody2D2" unique_id=499271448]
+position = Vector2(640, -4)
+shape = SubResource("RectangleShape2D_v0ilk")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="MainMenuLayer/Boundary" unique_id=1590051992]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainMenuLayer/Boundary/StaticBody2D3" unique_id=281585603]
+position = Vector2(640, 724)
+shape = SubResource("RectangleShape2D_v0ilk")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="MainMenuLayer/Boundary" unique_id=452062600]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainMenuLayer/Boundary/StaticBody2D4" unique_id=1058692086]
+position = Vector2(1284, 360)
+shape = SubResource("RectangleShape2D_xwlw8")
+
+[node name="MenuCircls" type="Node2D" parent="MainMenuLayer" unique_id=967954913]
+unique_name_in_owner = true
+
+[node name="Circl" parent="MainMenuLayer/MenuCircls" unique_id=1784542154 instance=ExtResource("8_5alkf")]
+position = Vector2(416, 488)
+collision_mask = 4
+
+[node name="Circl2" parent="MainMenuLayer/MenuCircls" unique_id=2118918602 instance=ExtResource("8_5alkf")]
+position = Vector2(416, 488)
+collision_mask = 4
+
+[node name="Circl3" parent="MainMenuLayer/MenuCircls" unique_id=260460917 instance=ExtResource("8_5alkf")]
+position = Vector2(416, 488)
+collision_mask = 4
+
+[node name="Circl4" parent="MainMenuLayer/MenuCircls" unique_id=2052638365 instance=ExtResource("8_5alkf")]
+position = Vector2(416, 488)
+collision_mask = 4
+
+[node name="Circl5" parent="MainMenuLayer/MenuCircls" unique_id=766925241 instance=ExtResource("8_5alkf")]
+position = Vector2(416, 488)
+collision_mask = 4
+
+[node name="MainMenuRoot" type="Control" parent="MainMenuLayer" unique_id=1778686829]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Control" parent="MainMenuLayer/MainMenuRoot" unique_id=503113732]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -112.0
+offset_right = -40.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+metadata/_edit_group_ = true
+
+[node name="CapitalC" type="Label" parent="MainMenuLayer/MainMenuRoot/Title" unique_id=1537663648]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -48.0
+offset_right = -117.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "C"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CapitalC2" type="Label" parent="MainMenuLayer/MainMenuRoot/Title" unique_id=1760067000]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -32.0
+offset_right = 99.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "arve"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CapitalC3" type="Label" parent="MainMenuLayer/MainMenuRoot/Title" unique_id=675089256]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 96.0
+offset_top = -48.0
+offset_right = 171.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "O"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CapitalC4" type="Label" parent="MainMenuLayer/MainMenuRoot/Title" unique_id=1626847953]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 104.0
+offset_top = -32.0
+offset_right = 323.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "ut"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="Control" parent="MainMenuLayer/MainMenuRoot" unique_id=186804931]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="MainMenuLayer/MainMenuRoot/Buttons" unique_id=909597562]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 92.0
+offset_bottom = 45.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_qctb3")
+text = "play"
+
 [connection signal="pressed" from="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/DecrementHealth" to="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor" method="_on_decrement_health_pressed"]
 [connection signal="text_changed" from="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor" to="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor" method="_on_text_changed"]
 [connection signal="pressed" from="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/IncrementHealth" to="HudLayer/HudRoot/Panels/Settings/CirclHealthEdit/HealthEditor" method="_on_increment_health_pressed"]
+[connection signal="pressed" from="HudLayer/HudRoot/Panels/Settings/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="HudLayer/HudRoot/Panels/Settings/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HudLayer/HudRoot/Panels/Settings/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="toggled" from="HudLayer/HudRoot/Panels/Settings/AimGuideToggle" to="." method="_on_aim_guide_toggle_toggled"]
+[connection signal="pressed" from="VictoryLayer/VictoryRoot/MainMenuButton" to="." method="_on_victory_main_menu_button_pressed"]
+[connection signal="pressed" from="MainMenuLayer/MainMenuRoot/Buttons/Play" to="." method="_on_play_pressed"]

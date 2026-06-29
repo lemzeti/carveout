@@ -17,20 +17,24 @@ position = Vector2(-144, -56)
 
 [node name="Rectangl7" parent="TargetPattern" unique_id=13442405 instance=ExtResource("2_sf4y2")]
 position = Vector2(-72, -56)
+target_health = 2
 
 [node name="Rectangl8" parent="TargetPattern" unique_id=1814353324 instance=ExtResource("2_sf4y2")]
 position = Vector2(0, -56)
 
 [node name="Rectangl9" parent="TargetPattern" unique_id=1025590084 instance=ExtResource("2_sf4y2")]
 position = Vector2(72, -56)
+target_health = 2
 
 [node name="Rectangl10" parent="TargetPattern" unique_id=1453660680 instance=ExtResource("2_sf4y2")]
 position = Vector2(144, -56)
 
 [node name="Rectangl13" parent="TargetPattern" unique_id=1674024531 instance=ExtResource("2_sf4y2")]
+target_health = 1
 
 [node name="Rectangl18" parent="TargetPattern" unique_id=1691877883 instance=ExtResource("2_sf4y2")]
 position = Vector2(0, 56)
+target_health = 2
 
 [node name="Rectangl23" parent="TargetPattern" unique_id=226716250 instance=ExtResource("2_sf4y2")]
 position = Vector2(0, 112)

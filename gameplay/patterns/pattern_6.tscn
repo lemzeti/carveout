@@ -11,26 +11,34 @@ unique_name_in_owner = true
 
 [node name="Rectangl" parent="TargetPattern" unique_id=822925019 instance=ExtResource("2_avv6q")]
 position = Vector2(-144, -112)
+target_health = 1
 
 [node name="Rectangl2" parent="TargetPattern" unique_id=1827968038 instance=ExtResource("2_avv6q")]
 position = Vector2(-72, -112)
+target_health = 1
 
 [node name="Rectangl3" parent="TargetPattern" unique_id=1733267549 instance=ExtResource("2_avv6q")]
 position = Vector2(0, -112)
+target_health = 1
 
 [node name="Rectangl4" parent="TargetPattern" unique_id=2028866446 instance=ExtResource("2_avv6q")]
 position = Vector2(72, -112)
+target_health = 1
 
 [node name="Rectangl5" parent="TargetPattern" unique_id=1631882908 instance=ExtResource("2_avv6q")]
 position = Vector2(144, -112)
+target_health = 1
 
 [node name="Rectangl12" parent="TargetPattern" unique_id=507852203 instance=ExtResource("2_avv6q")]
 position = Vector2(-72, 0)
+target_health = 2
 
 [node name="Rectangl13" parent="TargetPattern" unique_id=919699354 instance=ExtResource("2_avv6q")]
+target_health = 2
 
 [node name="Rectangl14" parent="TargetPattern" unique_id=736157689 instance=ExtResource("2_avv6q")]
 position = Vector2(72, 0)
+target_health = 2
 
 [node name="Rectangl23" parent="TargetPattern" unique_id=1314186089 instance=ExtResource("2_avv6q")]
 position = Vector2(0, 112)

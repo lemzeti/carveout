@@ -7,7 +7,7 @@
 radius = 12.0
 
 [node name="Circl" type="CharacterBody2D" unique_id=1784542154]
-collision_mask = 7
+collision_mask = 6
 script = ExtResource("1_kebjp")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=999089365]
@@ -22,11 +22,15 @@ texture = ExtResource("2_othnu")
 
 [node name="Label" type="Label" parent="." unique_id=190843166]
 unique_name_in_owner = true
-offset_left = -33.0
-offset_top = -18.0
-offset_right = 31.0
-offset_bottom = 14.0
-theme_override_font_sizes/font_size = 30
+offset_left = -30.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 15
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="." unique_id=1759978058]
+
+[node name="Ded" type="AudioStreamPlayer2D" parent="." unique_id=117201044]

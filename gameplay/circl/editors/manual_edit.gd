@@ -2,7 +2,7 @@ class_name HealthEditor
 extends LineEdit
 
 
-@export var value : int = 1
+@export var value : int = 0
 
 
 func _ready() -> void:
@@ -22,9 +22,7 @@ func _on_text_changed(new_text : String) -> void:
 
 
 func _on_decrement_health_pressed() -> void:
-	print("val before: ", value)
 	value -= 1
-	print("val after: ", value)
 
 	if value < Game.MIN_HEALTH:
 		value = Game.MAX_HEALTH

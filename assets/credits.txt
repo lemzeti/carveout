@@ -1,2 +1,8 @@
 --- Fonts ---
-> RasterForge : https://www.fontspace.com/raster-forge-font-f135159
+> "RasterForge" by GGBotNet : https://www.fontspace.com/raster-forge-font-f135159
+
+--- SFX ---
+> all : https://sfxr.me/
+
+--- Music ---
+> "Retro Game Arcade" by moodmode : https://pixabay.com/music/video-games-retro-game-arcade-236133/

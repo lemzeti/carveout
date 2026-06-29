@@ -1,10 +1,10 @@
 class_name CirclSpawner
-extends Node2D
+extends CharacterBody2D
 
 
 const CIRCL_SCENE : PackedScene = preload("uid://cs2o7jr0pm6p6")
 const MAX_ROTATION : float = 45.0 # In radians
-const MAX_TRAJECTORY_POINTS : int = 5
+const MAX_TRAJECTORY_POINTS : int = 2
 
 
 @export var circl_root : Node2D :
@@ -16,11 +16,17 @@ const MAX_TRAJECTORY_POINTS : int = 5
 @export var health_editor : HealthEditor = null
 
 @export_group("Circl Stats")
-@export var circl_health : int = 5
+@export var circl_health : int = 2
 @export var circl_speed : float = 750.0
 
 
-var direction : Vector2 = Vector2.ZERO
+var aim_direction : Vector2 = Vector2.ZERO
+
+var move_speed : float = 500.0
+var move_direction : float = 0.0
+
+var trajectory_guide_enabled : bool = true
+var bounce_count : int = 0
 
 
 @onready var sprite : Sprite2D = %Sprite
@@ -33,20 +39,26 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	# Aiming
-	if event is InputEventMouseMotion:
-		_aim(event.position)
-		_update_trajectory()
-
-	# Shooting
-	if event is InputEventKey:
-		if event.is_action_pressed("shoot"):
-			_shoot()
+	# Shooting ????ADSASD
+	if event.is_action_pressed("shoot"):
+		_shoot()
 
 
-func _aim(pos : Vector2) -> void:
-	direction = (pos - global_position).normalized()
-	sprite.look_at(direction)
+func _physics_process(_delta: float) -> void:
+	_aim()
+	_update_trajectory()
+
+	# ???
+	move_direction = Input.get_axis("move_left", "move_right")
+	# ?
+	velocity.x = move_direction * move_speed
+	move_and_slide()
+	# j
+
+
+func _aim() -> void:
+	aim_direction = (get_global_mouse_position() - global_position).normalized()
+	sprite.look_at(get_global_mouse_position())
 
 
 func _shoot() -> void:
@@ -54,7 +66,7 @@ func _shoot() -> void:
 
 	circl.health = circl_health
 	circl.speed = circl_speed
-	circl.direction = direction
+	circl.direction = aim_direction
 	circl.global_position = global_position
 
 	circl_root.add_child(circl)
@@ -62,12 +74,17 @@ func _shoot() -> void:
 
 
 func _update_trajectory() -> void:
+	if not trajectory_guide_enabled:
+		return
+
+	bounce_count = 0
+
 	# Clear previous trajectory
 	aim_trajectory.clear_points()
 
 	# Simulate actual Circl
 	var traj_position : Vector2 = Vector2.ZERO
-	var traj_direction : Vector2 = direction
+	var traj_direction : Vector2 = aim_direction
 	var traj_motion : Vector2 = traj_direction * circl_speed
 
 	# Draw points
@@ -76,7 +93,7 @@ func _update_trajectory() -> void:
 
 		# Bounce off stuff
 		var collision := bounce_check.move_and_collide(traj_motion, true)
-		if collision:
+		if collision and bounce_count == 0:
 			traj_direction = traj_direction.bounce(collision.get_normal())
 
 		traj_position += traj_motion
@@ -108,7 +125,9 @@ func _on_health_edited(text : String) -> void:
 
 func disable() -> void:
 	set_process_input(false)
+	set_physics_process(false)
 
 
 func enable() -> void:
 	set_process_input(true)
+	set_physics_process(true)
